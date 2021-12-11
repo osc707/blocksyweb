@@ -1,5 +1,5 @@
 import { appWithTranslation } from 'next-i18next'
-import '../public/app.css'
+import '../public/app.scss'
 
 const MyApp = ({ Component, pageProps }) => <Component {...pageProps} />
 

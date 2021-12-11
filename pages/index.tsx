@@ -10,7 +10,7 @@ const HomePage = (): JSX.Element => {
   return (
     <>
       <Header />
-      <div>Blocksyweb</div>
+      <div className='logo-temp'>Blocksyweb</div>
       <Footer />
     </>
   );

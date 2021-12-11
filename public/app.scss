@@ -1,0 +1,27 @@
+@import '~tailwindcss/base';
+@import '~tailwindcss/components';
+@import '~tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,900;1,300&family=Poiret+One&display=swap');
+
+
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+.logo, h1, h2, h3, h4, h5, h6, .logo-temp {
+  font-family: 'Poiret One', cursive;
+}
+
+.logo-temp {
+  font-size: 125px;
+  width: 40vw;
+  margin: 10% auto 0 auto;
+  @apply text-center;
+}
+
+// Footer
+footer {
+  @apply text-center;
+  font-size: 11px;
+}
