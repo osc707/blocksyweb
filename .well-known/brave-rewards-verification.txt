@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: blocksyweb.xyz
+Token: 0cd4709eb53d46ddd026f6c1b5386c6a632116979f7dc79734984bebacc360ce
