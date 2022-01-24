@@ -3,25 +3,25 @@ import { useContext, useState } from 'react'
 
 import { CurrentPageContext, NavVisibleContext } from '../lib/contexts'
 
+type Page = {
+  key: string,
+  label: string,
+  url: string,
+  index: number,
+};
 
-const navItems = [
-  {
-    key: 'home',
-    label: 'Home',
-    url: '/',
-    index: 0
-  },
+const navItems: Page[] = [
   {
     key: 'blog',
     label: 'Blog',
     url: '/posts',
-    index: 1
+    index: 0
   },
   {
     key: 'autograph',
     label: 'Autograph',
     url: '/autograph',
-    index: 2
+    index: 1
   }
 ].sort(({ index: a }, { index: b }) => {
     if (a < b) {
@@ -72,31 +72,45 @@ const Nav = (): JSX.Element => {
   const navToggleCss = (navOpen) ? 'navToggle' : 'navToggle navToggle--closed';
 
   return (
-    <div className={navContainerCss}>
-      <div className='row navLogo--Container'>
-        <div
-          className={navToggleCss}
-          onClick={() => hideNav(!navOpen)}>
+    <>
+      <nav className='relative w-full flex flex-wrap items-center justify-between py-4 text-gray-500 hover:text-gray-700 focus:text-gray-700 shadow-md navbar navbar-expand-lg navbar-bg'>
+        <span className='gradient'></span>
+        <div className='container-fluid w-full flex flex-wrap items-center justify-between px-6 clickable'>
+          <button className='navbar-toggler text-white border-0 hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline' type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" className='w-6' role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z">
+              </path>
+            </svg>
+          </button>
+          <div className='collapse navbar-collapse flex-grow items-center' id="navbarSupportedContent">
+            <ul className='navbar-nav flex flex-row pl-0 list-style-none mr-auto mb-0'>
+              <li className='nav-item px-2'>
+                <a className='text-xl text-black logo' aria-current="page" href="/">Blocksyweb</a>
+              </li>
+              {(navItems || []).map((item: Page) => {
+                const cssClass = (currentPage === item.key) ? 'navItem navItem--active' : 'navItem';
+                return (
+                  <li key={item.key} className={`nav-item pr-2 ${cssClass}`} onClick={handleClick}>
+                    <Link href={item.url}>
+                      <a className='nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0'>{item.label}</a>
+                    </Link>
+                  </li>
+                );
+              })}
+              {/* <li className='nav-item pr-2'>
+                <a className='nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0' href="#">Features</a>
+              </li>
+              <li className='nav-item pr-2'>
+                <a className='nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0' href="#">Pricing</a>
+              </li>
+              <li className='nav-item pr-2'>
+                <a className='nav-link disabled text-gray-300 p-0'>Disabled</a>
+              </li> */}
+            </ul>
+          </div>
         </div>
-        <h1 className='navLogo logo'>Blocksyweb</h1>
-      </div>
-      <div
-        className={backdropCss}
-        onClick={() => hideNav(false)}>
-        <div className={navCss}>
-          {(navItems || []).map((item: any) => {
-            const cssClass = (currentPage === item.key) ? 'navItem navItem--active' : 'navItem';
-            return (
-              <div key={item.key} className={cssClass} onClick={handleClick}>
-                <Link href={item.url}>
-                  <a>{item.label}</a>
-                </Link>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    </div>
+      </nav>
+    </>
   );
 };
 

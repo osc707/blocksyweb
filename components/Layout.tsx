@@ -13,11 +13,11 @@ const Layout = ({ children }): JSX.Element => {
   return (
     <>
       <HeadComponent />
+      <Nav />
       <div className={pageCss}>
         {children}  
       </div>
       <Footer />
-      <Nav />
     </>
   )
 };

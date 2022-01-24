@@ -13,6 +13,12 @@ module.exports = (() => {
       name: 'title',
       message: 'Enter a Title for your post:',
       default: 'new-blog-page'
+    },
+    {
+      type: 'input',
+      name: 'author',
+      message: 'Enter your author id',
+      default: 'osc'
     }
   ]).then((answers) => {
     const blogDate = `${format(new Date(), 'yyyy-MM-dd')}`; // YYYY-mm-dd
@@ -28,6 +34,7 @@ module.exports = (() => {
       `ogDesc: \r\n` + 
       `ogUrl: '/posts/${fileName}'\r\n` +
       `ogImg: \r\n` +
+      `author: ${answers.author}`
       `---\r\n` +
       `\r\n\r\n` +
       `# ${title}`;

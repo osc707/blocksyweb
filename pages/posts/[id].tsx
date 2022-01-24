@@ -31,7 +31,10 @@ const Post = ({ postData }) => {
 
   return (
     <Layout>
-      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }}></div>
+      <div 
+        className='postContainer' 
+        dangerouslySetInnerHTML={{ __html: postData.contentHtml }}>
+      </div>
     </Layout>
   )
 };

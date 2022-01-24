@@ -6,6 +6,7 @@
 
 $dark-bg: rgb(71, 71, 71);
 $dark-bg-text: #ffffff;
+$nav-link-text: #ffffff;
 
 $light-bg: #ffffff;
 $light-bg-text: rgb(71, 71, 71);
@@ -121,6 +122,16 @@ a:visited, a:active {
   color: $light-bg-text;
 }
 
+// Posts
+.postContainer {
+
+}
+
+.postProfileImage {
+  // https://bennettfeely.com/clippy/
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
+}
+
 // Nav
 .navContainer {
   position: absolute;
@@ -198,40 +209,58 @@ a:visited, a:active {
   transition: height 200ms ease;
 }
 
-.navItem, .navItem a:link, .navItem a:active, .navItem a:visited {
-  color: $light-bg-link;
-  @apply bg-transparent;
-  @apply pl-2;
-  @apply py-1;
-  text-decoration: none;
-  font-family: 'Poiret One', cursive;
-  @apply text-4xl;
+nav {
+  background-image: url('/images/home-header.jpg');
+  background-position: 0% 33%;
+
+  .gradient {
+    position: absolute;
+    background: linear-gradient(310deg, rgba(106,17,203,1) 0%, rgba(37,117,252,1) 100%);
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    opacity: .8;
+    z-index: 1;
+  }
+
+  .clickable {
+    z-index: 2;
+  }
+
+  .logo {
+    font-family: 'Poiret One', cursive;
+    @apply text-4xl;
+    text-decoration: none;
+    color: $nav-link-text;
+  }
+
+  .navItem, .navItem a:link, .navItem a:active, .navItem a:visited {
+    color: $nav-link-text;
+    @apply bg-transparent;
+    @apply pl-2;
+    @apply py-1;
+    text-decoration: none;
+    // font-family: 'Poiret One', cursive;
+    
+  }
+  .navItem > a {
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .navItem:hover,
+  .navItem:hover > a,
+  .navItem--active, 
+  .navItem--active a:link, 
+  .navItem--active a:active, 
+  .navItem--active a:visited {
+    color: $nav-link-text;
+    text-decoration: underline;
+  }
 }
 
-.navItem > a {
-  display: inline-block;
-  width: 100%;
-}
-
-.navItem:hover,
-.navItem:hover > a,
-.navItem--active, 
-.navItem--active a:link, 
-.navItem--active a:active, 
-.navItem--active a:visited {
-  color: $light-bg-link-active;
-  text-decoration: underline;
-}
-
-.logo, .logo-temp {
-  font-family: 'Poiret One', cursive;
-}
-
-.logo-temp {
-  font-size: 125px;
-  margin: 10% auto 0 auto;
-  @apply text-center;
-}
 
 .row {
   @apply flex;
