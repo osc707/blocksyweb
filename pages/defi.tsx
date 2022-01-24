@@ -83,7 +83,7 @@ const Defi = (): JSX.Element => {
       <p>This page is not investment advice. If you are seeing this it's because you found it. Always do your own research (DYOR).</p>
       {!data && (
         <div className='loading'>
-          <img src='spinner.gif' />
+          <img src='/images/Spinner.gif' />
         </div>
       )}
       {data && (
