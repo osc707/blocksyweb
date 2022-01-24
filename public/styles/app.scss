@@ -1,0 +1,364 @@
+@import '~tailwindcss/base';
+@import '~tailwindcss/components';
+@import '~tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,900;1,300&family=Poiret+One&display=swap');
+
+$dark-bg: rgb(71, 71, 71);
+$dark-bg-text: #ffffff;
+
+$light-bg: #ffffff;
+$light-bg-text: rgb(71, 71, 71);
+$light-bg-link: #2025a2;
+$light-bg-link-active: #ff1c1c;
+
+$highlight: #ff1c1c;
+$highlight2: #f3f3f3;
+
+:export {
+  dark-bg: $dark-bg;
+  dark-bg-text: $dark-bg-text;
+
+  light-bg: $light-bg;
+  light-bg-text: $light-bg-text;
+  light-bg-link: $light-bg-link;
+  light-bg-link-active: $light-bg-link-active;
+
+  highlight: $highlight;
+  highlight2: $highlight2;
+}
+
+* {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+
+html {
+  min-height: -webkit-fill-available;
+  box-sizing: border-box;
+  background-color: $light-bg;
+  color: $light-bg-text
+}
+
+html, body {
+  min-height: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+body {
+  min-width: 100vw;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  @apply text-lg;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply mb-2;
+  font-weight: 900;
+}
+
+h1 {
+  @apply text-3xl;
+}
+
+h2 {
+  @apply text-2xl;
+}
+
+h3, h4, h5, h6 {
+  @apply text-xl;
+}
+
+p, ul {
+  @apply mb-4;
+}
+
+ul, ol, li {
+  display: block;
+}
+
+li {
+  @apply pl-8;
+  list-style-type: georgian;
+  list-style-position: inside;
+}
+
+strong, b {
+  font-weight: bold;
+}
+
+i {
+  font-style: italic;
+}
+
+a:link, a:hover, a:visited, a:active {
+  @apply text-purple-600;
+  @apply no-underline;
+}
+
+a:link {
+  @apply underline;
+}
+
+a:hover {
+  @apply text-purple-300;
+}
+
+a:visited, a:active {
+  @apply text-purple-900;
+}
+// End base setup
+
+// Main container
+.appContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.appContainer--light {
+  background-color: $light-bg;
+  color: $light-bg-text;
+}
+
+// Nav
+.navContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+}
+
+.navContainer--close {
+  height: initial;
+}
+
+.navContainer--open {
+  height: 100vh;
+}
+
+.navToggle {
+  background-color: $highlight;
+  border-radius: 2px;
+  height: 24px;
+  width: 24px;
+  text-align: center;
+  margin: 14px 12px 0px 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transform: rotate(0deg);
+  transition: transform 200ms ease, background 800ms ease;
+  @apply shadow-lg;
+}
+
+.navToggle--closed {
+  background-color:  $highlight2;
+  transform: rotate(360deg);
+  transition: transform 200ms ease, background 800ms ease;
+}
+
+.navLogo {
+  @apply pt-2;
+}
+
+.navLogo--Container {
+  background-color: $dark-bg;
+  color: $dark-bg-text;
+}
+
+.nav--backdrop {
+  position: absolute;
+  @apply backdrop-blur;
+  width: 100%;
+  height: 100%;
+  display: inherit;
+}
+
+.nav--backdrop--hide {
+  display: none;
+}
+
+.nav {
+  height: calc(100vh - 32px);
+  background-color: $light-bg;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  border-bottom: 2px solid $highlight;
+  width: 100%;
+  text-align: center;
+}
+
+.nav--open {
+  height: calc(100vh - 52px);
+  transition: height 200ms ease;
+}
+
+.nav--hide {
+  height: 0px;
+  transition: height 200ms ease;
+}
+
+.navItem, .navItem a:link, .navItem a:active, .navItem a:visited {
+  color: $light-bg-link;
+  @apply bg-transparent;
+  @apply pl-2;
+  @apply py-1;
+  text-decoration: none;
+  font-family: 'Poiret One', cursive;
+  @apply text-4xl;
+}
+
+.navItem > a {
+  display: inline-block;
+  width: 100%;
+}
+
+.navItem:hover,
+.navItem:hover > a,
+.navItem--active, 
+.navItem--active a:link, 
+.navItem--active a:active, 
+.navItem--active a:visited {
+  color: $light-bg-link-active;
+  text-decoration: underline;
+}
+
+.logo, .logo-temp {
+  font-family: 'Poiret One', cursive;
+}
+
+.logo-temp {
+  font-size: 125px;
+  margin: 10% auto 0 auto;
+  @apply text-center;
+}
+
+.row {
+  @apply flex;
+  @apply flex-none;
+  @apply flex-row;
+}
+
+// Home page
+.bg-gradient-info {
+  background: linear-gradient(310deg, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+}
+.waves {
+  position:relative;
+  width: 100%;
+  height:15vh;
+  margin-bottom:-7px; /*Fix for safari gap*/
+  min-height:100px;
+  max-height:150px;
+}
+.simple-waves > use {
+  animation: wavy 55s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+.simple-waves > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.simple-waves > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.simple-waves > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.simple-waves > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 16s;
+}
+.simple-waves > use:nth-child(5) {
+  animation-delay: -4s;
+  animation-duration: 20s;
+}
+@keyframes wavy {
+  0% {
+  transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(85px,0,0);
+  }
+}
+@media (max-width: 768px) {
+  .waves {
+    height:40px;
+    min-height:40px;
+  }
+}
+
+.home {
+  .logo {
+    font-size: 96px;
+    margin: 0 auto 0 auto;
+    position: absolute;
+    top: 74px;
+    font-family: 'Poiret One', cursive;
+    color: $dark-bg-text;
+    width: 100vw;
+    text-align: center;
+  }
+}
+.-skew-x-12 {
+  transform: skewX(-12deg);
+}
+.skew-x-12 {
+  transform: skewX(12deg);
+}
+
+// Autograph
+.flip {
+  width: 150px;
+  height: 150px; 
+  text-align: center;
+  perspective: 600px;
+  margin: 30px;
+  border: 1px solid $light-bg;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.flip-content {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s;
+  transform-style: preserve-3d;
+}
+
+.flip:hover .flip-content {
+  transform: rotateY(180deg);
+  transition: transform 0.3s;
+}
+
+.flip-front, .flip-back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  line-height: 150px;
+  backface-visibility: hidden;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+.flip-front p {
+  text-align: center;
+}
+
+// Defi
+.defiChart {
+  width: 80vh;
+  height: 80vh;
+  margin: 0 auto;
+}
+
+// Footer
+footer {
+  @apply text-center;
+  font-size: 11px;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}

@@ -1,0 +1,30 @@
+---
+tags:
+ - posts
+amzn:
+tb:
+date: '2021-12-18'
+ogTitle: 'Setup guide for selling your first NFT'
+ogDesc: 
+ogUrl: '/posts/setup-guide-for-selling-your-first-nft'
+ogImg: 
+---
+
+# Setup guide for selling your first NFT
+
+This post is the first in a series on helping you to seel your first NFT with either [Opensea](https://www.opensea.io) or [Foundation.app](https://www.foundation.app).
+
+### Coinbase account setup
+
+* Create an account with [Coinbase](https://www.coinbase.com/join/campos_fg6)
+  * __Why Coinbase?__ I have found them to be the easiest to convert crypto to cash
+  * You will have to do KYC (know your customer): Name, address, SSN on their website or App
+
+### Coinbase add funds and buy crypto
+
+* Once your account is approved, fund it with whatever method works for you. When you are ready to add funds to your account, I would add $200 USD
+  * Be aware that there will be Coinbase fees
+* Then use the remainder of your balance to buy Ethereum ($ETH) tokens, you need to take into account __gas__ fees
+  * __What are gas fees?__ It's the fee to send and purchase crypto. It helps keep the network safe and pays the network validators. Each "network" (crypto) has its own fee schedule, ETH is the most expensive
+* On the left nav click "Trade" and search for Ethereum
+* Click buy and enter the remainder of your balance upt $200
