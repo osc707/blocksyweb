@@ -36,7 +36,7 @@ const HomePage = (): JSX.Element => {
                     <span>your crypto knowledge</span>
                   </h2>
                   <p className='text-xl mb-6 text-white opacity-90'>
-                    Keep an eye out as we build our library of easy to-read articles, in-depth analysis and tools to help the NFT and crypto community at large
+                    Keep an eye out as we build our library of easy to-read articles, in-depth analysis and tools to help the NFT creators, collectors and the crypto community at large
                   </p>
                   <div>
                     <button type="button" className='px-7 py-3 bg-gray-200 text-gray-900 font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-300 ease-in-out mt-6 mr-2'>
