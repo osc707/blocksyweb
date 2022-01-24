@@ -32,7 +32,7 @@ const Post = ({ postData }) => {
   return (
     <Layout>
       <div 
-        className='postContainer' 
+        className='post' 
         dangerouslySetInnerHTML={{ __html: postData.contentHtml }}>
       </div>
     </Layout>
