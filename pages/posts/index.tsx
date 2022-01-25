@@ -1,5 +1,3 @@
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import { useContext, useEffect } from 'react'
 
@@ -12,8 +10,6 @@ import {
 import { getSortedPostsData } from '../../lib/posts'
 
 const Posts = ({ allPostsData }): JSX.Element => {
-
-  const { t } = useTranslation('common');
   const { currentPage, setCurrentPage } = useContext(CurrentPageContext);
   const { pageCss, setPageCss } = useContext(PageBgContext);
   const { oggData, setOggData } = useContext(OggDataContext);
@@ -40,15 +36,13 @@ const Posts = ({ allPostsData }): JSX.Element => {
   );
 };
 
-export const getStaticProps = async ({ locale }) => {
+export const getStaticProps = async () => {
   const allPostsData = getSortedPostsData();
   return {
     props: {
       allPostsData,
-      ...await serverSideTranslations(locale, ['common']),
     },
   };
 };
-
 
 export default Posts;

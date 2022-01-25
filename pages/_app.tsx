@@ -1,6 +1,5 @@
 import '../public/styles/app.scss'
 
-import { appWithTranslation } from 'next-i18next'
 import { useEffect, useMemo, useState } from 'react'
 
 import { GrayMatter } from '../lib/constants'
@@ -70,4 +69,4 @@ const MyApp = ({ Component, pageProps }) => {
   );
 }
 
-export default appWithTranslation(MyApp)
+export default MyApp;

@@ -1,4 +1,3 @@
-import { useTranslation } from 'next-i18next'
 import { useContext, useEffect, useState } from 'react'
 
 import Chart from '../components/Defi/Chart'
@@ -11,8 +10,6 @@ import {
 } from '../lib/contexts'
 
 const Defi = (): JSX.Element => {
-
-  const { t } = useTranslation('common');
   const { currentPage, setCurrentPage } = useContext(CurrentPageContext);
   const { pageCss, setPageCss } = useContext(PageBgContext);
   const { oggData, setOggData } = useContext(OggDataContext);

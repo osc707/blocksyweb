@@ -1,12 +1,9 @@
-import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
 import { useContext } from 'react'
 
 import { OggDataContext } from '../lib/contexts'
 
 const HeadComponent = (): JSX.Element => {
-
-  const { t } = useTranslation('common')
   const { oggData, setOggData } = useContext(OggDataContext);
 
   return (

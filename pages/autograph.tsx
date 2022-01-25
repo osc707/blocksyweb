@@ -1,4 +1,3 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useContext, useEffect, useState } from 'react'
 
 import Layout from '../components/Layout'
@@ -140,10 +139,8 @@ const Autograph = (): JSX.Element => {
   )
 };
 
-export const getServerSideProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ['common'])),
-  },
+export const getServerSideProps = async () => ({
+  props: {},
 })
 
 export default Autograph;
