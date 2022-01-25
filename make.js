@@ -34,7 +34,7 @@ module.exports = (() => {
       `ogDesc: \r\n` + 
       `ogUrl: '/posts/${fileName}'\r\n` +
       `ogImg: \r\n` +
-      `author: ${answers.author}`
+      `author: '${answers.author}'`
       `---\r\n` +
       `\r\n\r\n` +
       `# ${title}`;

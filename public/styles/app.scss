@@ -124,6 +124,9 @@ a:visited, a:active {
 
 // Post
 .post {
+  width: 75vw;
+  @apply my-8;
+  @apply mx-auto;
 
   .authorImage {
     // https://bennettfeely.com/clippy/
@@ -329,6 +332,7 @@ nav {
     color: $dark-bg-text;
     width: 100vw;
     text-align: center;
+    font-weight: normal;
   }
 }
 .-skew-x-12 {

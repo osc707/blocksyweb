@@ -29,7 +29,7 @@ const HomePage = (): JSX.Element => {
             <span className='absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-attachment-fixed bg-gradient-info opacity-80'></span>
             <div className='container z-10 px-6'>
               <div className='grid grid-cols-1'>
-                <div className='logo'>Blocksyweb</div>
+                <h1 className='logo' data-test-id="logo">Blocksyweb</h1>
                 <div className='lg:max-w-2xl my-auto'>
                   <h2 className='text-6xl font-extrabold tracking-tight text-white mb-6'>
                     Helping you learn<br/>
@@ -39,7 +39,10 @@ const HomePage = (): JSX.Element => {
                     We're busy building our library of easy to-read articles, in-depth analysis and tools to help the beginner, NFT creators, collectors and the defi community at large.
                   </p>
                   <div>
-                    <button type="button" className='px-7 py-3 bg-gray-200 text-gray-900 font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-300 ease-in-out mt-6 mr-2'>
+                    <button
+                      type="button" 
+                      className='px-7 py-3 bg-gray-200 text-gray-900 font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-300 ease-in-out mt-6 mr-2'
+                      data-test-id="btnComingSoon">
                       Coming soon!
                     </button>
                     {/* <button type="button" className='inline-block px-7 py-3 bg-transparent text-white font-medium text-sm leading-snug uppercase rounded hover:bg-gray-100 hover:text-blue-700 focus:text-blue-700 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 active:text-blue-800 transition duration-300 ease-in-out mt-6'>
