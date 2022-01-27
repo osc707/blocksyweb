@@ -1,3 +1,4 @@
+import differenceInDays from 'date-fns/differenceInDays'
 import { useContext, useEffect, useState } from 'react'
 
 import Chart from '../components/Defi/Chart'
@@ -8,6 +9,7 @@ import {
   OggDataContext,
   PageBgContext
 } from '../lib/contexts'
+
 
 const Defi = (): JSX.Element => {
   const { currentPage, setCurrentPage } = useContext(CurrentPageContext);
@@ -30,13 +32,9 @@ const Defi = (): JSX.Element => {
   }
 
   const isDataStale = (startDate: string): boolean => {
-    const milliSecondsInADay = 86_400_000;
-    const numberOfDays = 3;
-    const min = milliSecondsInADay * numberOfDays;
-    const today = new Date().getMilliseconds();
-    const compareDate = new Date(startDate).getMilliseconds();
-    const diff = today - compareDate;
-    return diff > min;
+    const today = new Date();
+    const dataLastUpdated = new Date(startDate);
+    return differenceInDays(today, dataLastUpdated) >= 2;
   };
 
   const loadData = (): void => {
