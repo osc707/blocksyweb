@@ -1,16 +1,18 @@
 import { useContext, useEffect, useState } from 'react'
 
+import {
+  AutographPhysicalFile,
+  VerifyIPFSFile,
+  VerifyPhysicalFile
+} from '../components/Autograph'
 import Layout from '../components/Layout'
-import SignPhysicalFile from '../components/Sign/SignPhysicalFile'
-import VerifyIPFSFile from '../components/Sign/VerifyIPFSFile'
-import VerifyPhysicalFile from '../components/Sign/VerifyPhysicalFile'
 import { CurrentPageContext, PageBgContext } from '../lib/contexts'
 import {
   calcTokensRequired,
   fetchSavedWallet,
   fetchWalletsAndPrices,
   getWalletAddress
-} from '../services/sign.service'
+} from '../services/autograph.service'
 
 const gradient = 'linear-gradient(310deg, rgba(106,17,203,.8) 0%, rgba(37,117,252,.8) 100%)';
 
@@ -24,7 +26,7 @@ const Autograph = (): JSX.Element => {
   const [prices, setPrices] =  useState([]);
   
   useEffect(() => {
-    setCurrentPage('sign');
+    setCurrentPage('autograph');
     setPageCss('appContainer');
     setWallet(fetchSavedWallet());
 
@@ -52,7 +54,7 @@ const Autograph = (): JSX.Element => {
     <Layout>
       {(wallet && transId) && (
         <>
-          <SignPhysicalFile/>
+          <AutographPhysicalFile/>
           <VerifyPhysicalFile/>
           <VerifyIPFSFile/>
         </>

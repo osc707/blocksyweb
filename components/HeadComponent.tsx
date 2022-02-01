@@ -20,7 +20,8 @@ const HeadComponent = (): JSX.Element => {
         {oggData.image && (
           <meta property="og:image" content={oggData.ogImg} />
         )}
-        <link href='https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.9/typicons.min.css' rel='stylesheet' />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.9/typicons.min.css" rel="stylesheet" />
+        <link rel="icon" href="/icons/favicon.ico" />
       </Head>
     </>
   );

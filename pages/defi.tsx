@@ -1,14 +1,14 @@
-import differenceInDays from 'date-fns/differenceInDays'
+import { format } from 'date-fns'
 import { useContext, useEffect, useState } from 'react'
 
-import Chart from '../components/Defi/Chart'
-import Table from '../components/Defi/Table'
+import { Chart, Table } from '../components/Defi'
 import Layout from '../components/Layout'
 import {
   CurrentPageContext,
   OggDataContext,
   PageBgContext
 } from '../lib/contexts'
+import { isDataStale, setView } from '../services/defi.service'
 
 
 const Defi = (): JSX.Element => {
@@ -21,21 +21,11 @@ const Defi = (): JSX.Element => {
   const [chartView, setChartView] = useState(true);
   const [showGains, setShowGains] = useState(false);
 
-  const setView = (): void => {
-    (window.matchMedia('(min-width: 1000px)').matches) ? setChartView(true) : setChartView(false);
-  }
-
   const windowResize = (): void => {
     window.addEventListener('resize', () => {
-      setView();
+      setView(setChartView);
     });
   }
-
-  const isDataStale = (startDate: string): boolean => {
-    const today = new Date();
-    const dataLastUpdated = new Date(startDate);
-    return differenceInDays(today, dataLastUpdated) >= 2;
-  };
 
   const loadData = (): void => {
     const savedData = localStorage.getItem('defiData');
@@ -52,7 +42,7 @@ const Defi = (): JSX.Element => {
       // 'http://localhost:3000/defi/data'
     ).then(response => response.json()).then((resData) => {
       localStorage.setItem('defiData', JSON.stringify(resData));
-      localStorage.setItem('defiDate', `${new Date()}`);
+      localStorage.setItem('defiDate', `${format(new Date(), 'yyyy-MM-dd')}`);
       setData(resData);
     })
   };
@@ -64,7 +54,7 @@ const Defi = (): JSX.Element => {
       title: 'My defi investments',
       img: null,
     });
-    setView();
+    setView(setChartView);
     loadData();
     windowResize();
     setShowGains(
@@ -76,6 +66,7 @@ const Defi = (): JSX.Element => {
     <Layout>
       <h2>My defi investments</h2>
       <p>This page is not investment advice. If you are seeing this it's because you found it. Always do your own research (DYOR).</p>
+      {/* <Split/> */}
       {!data && (
         <div className='loading'>
           <img src='/images/Spinner.gif' />

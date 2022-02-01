@@ -3,8 +3,8 @@ import { useContext, useEffect } from 'react'
 // Display IPFS image on file onChange
 // send data to node backend for verification
 
-// TODO: pick image to sell, add: EXIF and signature, sell on opensea
-// TODO: fetch from IPFS, test if EXIF data and signature still exist
+// TODO: pick image to sell, add: EXIF and autograph, sell on opensea
+// TODO: fetch from IPFS, test if EXIF data and autograph still exist
 
 const submitForm = () => {};
 const onWalletChange = () => {};
@@ -32,7 +32,7 @@ const VerifyIPFSFile = (): JSX.Element => {
         <input
           type="submit"
           disabled={isDisabled}
-          value="Sign art"/>
+          value="Autograph art"/>
       </form>
     </div>
   );

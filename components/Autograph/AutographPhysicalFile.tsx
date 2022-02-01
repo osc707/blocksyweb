@@ -1,14 +1,14 @@
 import axios from 'axios'
 import { useState } from 'react'
 
-const VerifyPhysicalFile = (): JSX.Element => {
+const AutographPhysicalFile = (): JSX.Element => {
   const [file, setFile] = useState(null);
   const [wallet, setWallet] = useState(null);
 
   const onFileChange = (event: any) => {
-    console.log('in onfileChange');
     setFile(event.target.files[0]);
   };
+  
   const onWalletChange = (event: any) => setWallet(event.target.value);
 
   const submitForm = async (e: any): Promise<any> => {
@@ -17,17 +17,20 @@ const VerifyPhysicalFile = (): JSX.Element => {
     formData.append('wallet', wallet);
     formData.append('art', file, file.name);
 
-    const res = await axios.post('http://localhost:3000/verify', formData,
+    const res = await axios.post('http://localhost:3000/autograph/add', formData,
       {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }
     );
-    // decide how to present the data
+    
     const { data } = res;
-    console.log(data);
-  }
+
+    if (data.status === 'SUCCESS') {
+      window.open(`http://localhost:3000/autograph/download?f=${data.data}`);
+    }
+  };
 
   const isDisabled = file === null || wallet === null;
 
@@ -52,7 +55,7 @@ const VerifyPhysicalFile = (): JSX.Element => {
           <input
             type="submit"
             disabled={isDisabled}
-            value="Sign art"/>
+            value="Autograph art"/>
         </form>
       </div>
       {file && (
@@ -64,4 +67,4 @@ const VerifyPhysicalFile = (): JSX.Element => {
   )
 };
 
-export default VerifyPhysicalFile;
+export default AutographPhysicalFile;
