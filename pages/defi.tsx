@@ -8,7 +8,7 @@ import {
   OggDataContext,
   PageBgContext
 } from '../lib/contexts'
-import { isDataStale, setView } from '../services/defi.service'
+import { dateFormat, isDataStale, setView } from '../services/defi.service'
 
 
 const Defi = (): JSX.Element => {
@@ -42,7 +42,7 @@ const Defi = (): JSX.Element => {
       // 'http://localhost:3000/defi/data'
     ).then(response => response.json()).then((resData) => {
       localStorage.setItem('defiData', JSON.stringify(resData));
-      localStorage.setItem('defiDate', `${format(new Date(), 'yyyy-MM-dd')}`);
+      localStorage.setItem('defiDate', `${format(new Date(), dateFormat)}`);
       setData(resData);
     })
   };
