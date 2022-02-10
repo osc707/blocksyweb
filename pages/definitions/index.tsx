@@ -1,31 +1,30 @@
-import Link from 'next/link'
-import { useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import Layout from '../../components/Layout'
 import { CurrentPageContext, OggDataContext } from '../../lib/contexts'
-import { getSortedPostsData } from '../../lib/posts'
+import { getSortedDefinitionsData } from '../../lib/definitions'
 
 const Posts = ({ allPostsData }): JSX.Element => {
   const { currentPage, setCurrentPage } = useContext(CurrentPageContext);
   const { oggData, setOggData } = useContext(OggDataContext);
 
   useEffect(() => {
-    setCurrentPage('blog');
+    setCurrentPage('definitions');
     setOggData({
-      ogTitle: 'Blocksy web blog posts covering block chain, crypto, NFTs and tools',
+      ogTitle: 'Definitions so that reading our other content make sense',
       ogImg: null,
     })
   }, []);
 
   return (
     <Layout>
+      <h1>Definitions</h1>
       {allPostsData.map((post: any) => {
         return (
-          <div key={post.ogUrl}>
-            <Link href={post.ogUrl}>
-              <a>{post.ogTitle}</a>
-            </Link>
-          </div>
+          <React.Fragment key={post.id}>
+            <a id={post.id}></a>
+            <div dangerouslySetInnerHTML={{ __html: post.contentHtml }}></div>
+          </React.Fragment>
         );
       })}
     </Layout>
@@ -33,7 +32,7 @@ const Posts = ({ allPostsData }): JSX.Element => {
 };
 
 export const getStaticProps = async () => {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = await getSortedDefinitionsData();
   return {
     props: {
       allPostsData,

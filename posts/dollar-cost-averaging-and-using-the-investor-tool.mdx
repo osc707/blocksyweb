@@ -1,0 +1,63 @@
+---
+tags:
+ - posts
+ - tools
+date: '2022-02-03'
+ogTitle: 'Dollar cost averaging Investor tool'
+ogDesc: 'Helping you cost dollar average, split your investment and hopefully save'
+ogUrl: '/posts/dollar-cost-averaging-and-using-the-investor-tool'
+ogImg: 
+author: 'osc'
+---
+
+**Why did we build our [DCA Investor tool](/investor)?** 
+
+Last year we did not [DCA](/definitions#dca) buy as well as we should have. Also we did not set any upper limits on our investments.
+We purchased some coins near their peak, and where are we now? (In a Flo Rida voice) Cryptos got low, low, low, low, low, low, low, low. 
+But hey, did we really lose anything? We haven't sold! But guess what? We can do better.
+So in order to get better we thought to ourselves, that it would be nice to set some rules for our investing. No more [FOMO](/definitions#fomo), 
+no more buying during the pump. We should set some rules for investing.
+
+## Our investment rules
+
+We do this each month, because consistency is the key to anything.
+
+1. After paying bills, determine how much cash we have left over for investing
+1. Determine which coins we are going to buy, we have a limit of 5 or so
+2. Set a percentage of the investment allocated to each coin. Example: $BTC should get 30% of our investment
+3. Next, if $BTC's price is over a certain amount. It would be smart to buy an alternate. For us this would be a stable coin
+4. Do this for each coin we in our list
+
+No feelings, no emotions, purely rational with rules.
+
+## Investment with rules example
+
+Investment amount: $200 USD
+
+|Coin | Percentage | Max Price  | Alternate |
+|:----|-----------:|-----------:|:----------|
+|BTC  | 40         | 65000      | DAI       |
+|ETH  | 30         | 4500       | DAI       |
+|ADA  | 15         | 3.50       | DAI       |
+|SOL  | 15         | 100        | DAI       |
+
+## Rules applied to data
+
+Now it's the 6th of the month and it's time to invest. We have $200 USD to invest, so let's run through our rules engine.
+We start with our first coin in the list, and look up its price using [Coingecko](https://www.coingecko.com/). 
+If the value is below our __max price__ then we will buying it this month. Let's say that both $ADA and $SOL are above our max price.
+Our rules engine would then suggest buy the __alternate__ listed instead. And our table would look like this:
+
+|Coin | Amount |
+|:----|-------:|
+|BTC  |$80 USD |
+|ETH  |$60 USD |
+|DAI  |$60 USD |
+
+The alternate can be any coin you like. Our strategy this year is to buy a [stable coin](/definitions#stable-coin) when the 
+prices of assets we wish to own are above our max. Why would we do this? When prices rise, eventually there will be a correction. 
+When this happens it's good to have some cash on hand to invest when the market drops. There's nothing worse than not being liquid enough 
+when that happens.
+
+## Using the DCA Investor tool
+

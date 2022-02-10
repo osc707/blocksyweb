@@ -3,17 +3,12 @@ import { useContext, useEffect, useState } from 'react'
 
 import { Chart, Table } from '../components/Defi'
 import Layout from '../components/Layout'
-import {
-  CurrentPageContext,
-  OggDataContext,
-  PageBgContext
-} from '../lib/contexts'
+import { CurrentPageContext, OggDataContext } from '../lib/contexts'
 import { dateFormat, isDataStale, setView } from '../services/defi.service'
 
 
 const Defi = (): JSX.Element => {
   const { currentPage, setCurrentPage } = useContext(CurrentPageContext);
-  const { pageCss, setPageCss } = useContext(PageBgContext);
   const { oggData, setOggData } = useContext(OggDataContext);
 
   const [byValue, setByValue] = useState(true);
@@ -49,10 +44,9 @@ const Defi = (): JSX.Element => {
 
   useEffect(() => {
     setCurrentPage('blog');
-    setPageCss('appContainer appContainer--light');
     setOggData({
-      title: 'My defi investments',
-      img: null,
+      ogTitle: 'Our defi investments',
+      ogImg: null,
     });
     setView(setChartView);
     loadData();

@@ -9,6 +9,13 @@ module.exports = (() => {
   console.log('here');
   inquirer.prompt([
     {
+      type: 'list',
+      name:  'pageType',
+      message: 'What type of page would you like to create?',
+      choices: [ 'Blog', 'Definition'],
+      default: 'Blog'
+    },
+    {
       type: 'input',
       name: 'title',
       message: 'Enter a Title for your post:',
@@ -24,20 +31,23 @@ module.exports = (() => {
     const blogDate = `${format(new Date(), 'yyyy-MM-dd')}`; // YYYY-mm-dd
     const title = (answers.title || 'new-file');
     const fileName =  title.replace(/[\W_]+/g, '-').toLowerCase();
-    const fileFolder = path.join(__dirname, 'posts');
+    const isBlog = 'Blog' === answers.pageType;
+    const fileFolder = (isBlog) ? path.join(__dirname, 'posts') : path.join(__dirname, 'definitions');
+    const url = (isBlog) ? `/posts/${fileName}` : `/definitions`;
+    const tags = (isBlog) ? 'posts' : 'definitions';
     const fileExtension = '.mdx';
     const fileContents = `---\r\n` + 
       `tags:\r\n` + 
-      ` - posts\r\n` + 
+      ` - ${tags}\r\n` + 
+      ` - drafts\r\n` + 
       `date: '${blogDate}'\r\n` + 
       `ogTitle: '${title}'\r\n` +
       `ogDesc: \r\n` + 
-      `ogUrl: '/posts/${fileName}'\r\n` +
+      `ogUrl: '${url}'\r\n` +
       `ogImg: \r\n` +
-      `author: '${answers.author}'`
+      `author: '${answers.author}'\r\n` +
       `---\r\n` +
-      `\r\n\r\n` +
-      `# ${title}`;
+      `\r\n\r\n`;
 
     const data = new Uint8Array(Buffer.from(fileContents));
     const wholeFileName = `${fileFolder}/${fileName}${fileExtension}`;

@@ -9,19 +9,29 @@ const HeadComponent = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>{oggData.title}</title>
+        <title>{oggData.ogTitle + ' | Blocksyweb'}</title>
         <meta property="og:title" content={oggData.ogTitle} />
-        {oggData.desc && (
+        {oggData.ogDesc && (
           <meta property="og:description" content={oggData.ogDesc} />
         )}
-        {oggData.url && (
+        {oggData.ogUrl && (
           <meta property="og:url" content={oggData.ogUrl} />
         )}
-        {oggData.image && (
+        {oggData.ogImg && (
           <meta property="og:image" content={oggData.ogImg} />
         )}
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.9/typicons.min.css" rel="stylesheet" />
         <link rel="icon" href="/icons/favicon.ico" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XEKMHVK2QB"/>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag() { dataLayer.push(arguments) };
+              gtag('js', new Date());
+              gtag('config', 'G-XEKMHVK2QB');
+            `
+          }}
+        />
       </Head>
     </>
   );

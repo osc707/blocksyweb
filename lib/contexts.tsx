@@ -11,9 +11,9 @@ export const NavVisibleContext = createContext({
   setHasNav: null
 });
 
-export const PageBgContext = createContext({
-  pageCss: 'appContainer',
-  setPageCss: null
+export const FullPageContext = createContext({
+  isFullPage: false,
+  setIsFullPage: null
 });
 
 export const OggDataContext = createContext({

@@ -1,4 +1,3 @@
-import { isAfter, isBefore, parse } from 'date-fns'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
@@ -8,46 +7,37 @@ import html from 'remark-html'
 
 import { GrayMatter } from './constants'
 
-const postsDirectory = path.join(process.cwd(), 'posts');
+const definitionsDirectory = path.join(process.cwd(), 'definitions');
 
-export function getSortedPostsData() {
+export const getSortedDefinitionsData = async (): Promise<any> => {
   // Get file names under /posts
-  const fileNames = fs.readdirSync(postsDirectory)
-  const allPostsData = fileNames.map(fileName => {
+  const fileNames = fs.readdirSync(definitionsDirectory)
+  const files = Promise.all(fileNames.map(async (fileName) => {
     // Remove ".mdx" from file name to get id
     const id = fileName.replace(/\.mdx$/, '')
 
     // Read markdown file as string
-    const fullPath = path.join(postsDirectory, fileName)
+    const fullPath = path.join(definitionsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
+    const processedContent = await remark().use(html).use(remarkGfm).process(matterResult.content);
+    const contentHtml = processedContent.toString();
 
     // Combine the data with the id
     return {
       id,
-      ...(matterResult.data as GrayMatter)
+      contentHtml,
+      ...(matterResult.data as GrayMatter),
     }
-  })
-  // Sort posts by date
-  return allPostsData.sort(({ date: a }, { date: b }) => {
-    const aDate = parse(a, 'yyyy-MM-dd', new Date());
-    const bDate = parse(b, 'yyyy-MM-dd', new Date());
-
-    if (isBefore(aDate, bDate)) {
-      return 1;
-    }
-
-    if (isAfter(aDate, bDate)) {
-      return -1;
-    }
-
-    return 0;
-  }).filter((gm: GrayMatter) => !gm.tags.includes('drafts'));
+  }));
+  return (await files).filter((gm: GrayMatter) => !gm.tags.includes('drafts'));
+  // Sort posts by title
+  // return allPostsData.sort(({ ogTitle: a }, { ogTitle: b }) => a.localeCompare(b));
 }
 export const getAllPostIds = (): any => {
-  const fileNames = fs.readdirSync(postsDirectory)
+  const fileNames = fs.readdirSync(definitionsDirectory)
 
   // Returns an array that looks like this:
   // [
@@ -71,8 +61,8 @@ export const getAllPostIds = (): any => {
   })
 };
 
-export async function getPostData(id: string): Promise<any>  {
-  const fullPath = path.join(postsDirectory, `${id}.mdx`);
+export async function getDefinitionData(id: string): Promise<any>  {
+  const fullPath = path.join(definitionsDirectory, `${id}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
   // Use gray-matter to parse the post metadata section

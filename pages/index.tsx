@@ -1,8 +1,10 @@
+import Image from 'next/image'
 import { useContext, useEffect } from 'react'
 
 import Layout from '../components/Layout'
 import {
   CurrentPageContext,
+  FullPageContext,
   NavVisibleContext,
   OggDataContext
 } from '../lib/contexts'
@@ -11,12 +13,14 @@ const HomePage = (): JSX.Element => {
   const { currentPage, setCurrentPage } = useContext(CurrentPageContext);
   const { oggData, setOggData } = useContext(OggDataContext);
   const { hasNav, setHasNav } = useContext(NavVisibleContext);
+  const { isFullPage, setIsFullPage } = useContext(FullPageContext);
 
   useEffect(() => {
     setCurrentPage('home');
+    setIsFullPage(true);
     setOggData({
-      title: 'Blocksyweb: Block chain, Crypto, NFTs tools and information',
-      img: null,
+      ogTitle: 'Block chain, Crypto, NFTs tools and information',
+      ogImg: null,
     });
     setHasNav(false);
   }, []);
@@ -29,7 +33,14 @@ const HomePage = (): JSX.Element => {
             <span className='absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-attachment-fixed bg-gradient-info opacity-80'></span>
             <div className='container z-10 px-6'>
               <div className='grid grid-cols-1'>
-                <h1 className='logo' data-test-id="logo">Blocksyweb</h1>
+                <h1 className='logo' data-test-id="logo">
+                  <Image
+                    src={'/images/logo-horizontal-white.png'}
+                    alt={'Blocksyweb logo'}
+                    width={464}
+                    height={144}
+                  />
+                </h1>
                 <div className='lg:max-w-2xl my-auto'>
                   <h2 className='text-6xl font-extrabold tracking-tight text-white mb-6'>
                     Helping you learn<br/>

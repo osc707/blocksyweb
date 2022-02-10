@@ -1,4 +1,5 @@
 import { version } from '../package.json'
+import { InvestmentDisclaimer } from './utils'
 
 const Footer = ({ show = true}): JSX.Element => {
 
@@ -11,6 +12,7 @@ const Footer = ({ show = true}): JSX.Element => {
       <p>
         {`Copyright ${new Date().getFullYear()}`} | {version}
       </p>
+      <InvestmentDisclaimer/>
     </footer>
   );
 };

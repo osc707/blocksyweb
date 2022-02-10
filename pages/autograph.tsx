@@ -6,7 +6,7 @@ import {
   VerifyPhysicalFile
 } from '../components/Autograph'
 import Layout from '../components/Layout'
-import { CurrentPageContext, PageBgContext } from '../lib/contexts'
+import { CurrentPageContext } from '../lib/contexts'
 import {
   calcTokensRequired,
   fetchSavedWallet,
@@ -18,7 +18,6 @@ const gradient = 'linear-gradient(310deg, rgba(106,17,203,.8) 0%, rgba(37,117,25
 
 const Autograph = (): JSX.Element => {
   const { currentPage, setCurrentPage } = useContext(CurrentPageContext);
-  const { pageCss, setPageCss } = useContext(PageBgContext);
   const [wallet, setWallet] = useState(null);
   const [transId, setTransId] = useState(null);
   const [chain, setChain] = useState(null);
@@ -27,7 +26,6 @@ const Autograph = (): JSX.Element => {
   
   useEffect(() => {
     setCurrentPage('autograph');
-    setPageCss('appContainer');
     setWallet(fetchSavedWallet());
 
     fetchWalletsAndPrices().then((resp) => {

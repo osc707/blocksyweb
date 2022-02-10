@@ -16,22 +16,10 @@ $light-bg-link-active: #ff1c1c;
 $highlight: #ff1c1c;
 $highlight2: #f3f3f3;
 
-:export {
-  dark-bg: $dark-bg;
-  dark-bg-text: $dark-bg-text;
-
-  light-bg: $light-bg;
-  light-bg-text: $light-bg-text;
-  light-bg-link: $light-bg-link;
-  light-bg-link-active: $light-bg-link-active;
-
-  highlight: $highlight;
-  highlight2: $highlight2;
-}
+$gradient: linear-gradient(310deg, rgba(106,17,203,1) 0%, rgba(37,117,252,1) 100%);
 
 * {
   font-family: 'Lato', sans-serif;
-  font-weight: 300;
 }
 
 html {
@@ -55,7 +43,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply mb-2;
+  @apply my-4;
   font-weight: 900;
 }
 
@@ -75,14 +63,15 @@ p, ul {
   @apply mb-4;
 }
 
-ul, ol, li {
+ul, ol {
   display: block;
+  list-style: square inside ;
+  @apply my-4;
 }
 
 li {
   @apply pl-8;
-  list-style-type: georgian;
-  list-style-position: inside;
+  display: block;
 }
 
 strong, b {
@@ -93,9 +82,25 @@ i {
   font-style: italic;
 }
 
+table {
+  @apply table-auto border-collapse border border-slate-400 my-8 w-2/3;
+
+  thead {
+    @apply font-bold text-white;
+    background: $gradient;
+  }
+
+  th {
+    @apply p-2;
+  }
+
+  td {
+    @apply border border-slate-200 p-2;
+  }
+}
+
 a:link, a:hover, a:visited, a:active {
-  @apply text-purple-600;
-  @apply no-underline;
+  @apply text-purple-600 no-underline;
 }
 
 a:link {
@@ -124,9 +129,16 @@ a:visited, a:active {
 
 // Post
 .post {
-  width: 75vw;
-  @apply my-8;
-  @apply mx-auto;
+
+  @apply text-base;
+
+  h2, h3 {
+    @apply mt-8;
+  }
+
+  ul, ol {
+    @apply my-4;
+  }
 
   .authorImage {
     // https://bennettfeely.com/clippy/
@@ -219,7 +231,7 @@ nav {
 
   .gradient {
     position: absolute;
-    background: linear-gradient(310deg, rgba(106,17,203,1) 0%, rgba(37,117,252,1) 100%);
+    background: $gradient;
     top: 0;
     right: 0;
     width: 100%;
@@ -242,11 +254,8 @@ nav {
 
   .navItem, .navItem a:link, .navItem a:active, .navItem a:visited {
     color: $nav-link-text;
-    @apply bg-transparent;
-    @apply pl-2;
-    @apply py-1;
+    @apply bg-transparent pl-2 py-1;
     text-decoration: none;
-    // font-family: 'Poiret One', cursive;
     
   }
   .navItem > a {
@@ -274,7 +283,7 @@ nav {
 
 // Home page
 .bg-gradient-info {
-  background: linear-gradient(310deg, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+  background: $gradient;
 }
 .waves {
   position:relative;
@@ -324,15 +333,7 @@ nav {
 
 .home {
   .logo {
-    font-size: 96px;
     margin: 0 auto 0 auto;
-    position: absolute;
-    top: 74px;
-    font-family: 'Poiret One', cursive;
-    color: $dark-bg-text;
-    width: 100vw;
-    text-align: center;
-    font-weight: normal;
   }
 }
 .-skew-x-12 {
@@ -387,6 +388,11 @@ nav {
   width: 80vh;
   height: 80vh;
   margin: 0 auto;
+}
+
+// Legal disclaimer
+.investmentDisclaimer {
+  @apply text-center text-sm bg-gray-100 p-4 my-2;
 }
 
 // Footer

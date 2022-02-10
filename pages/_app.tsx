@@ -5,9 +5,9 @@ import { useEffect, useMemo, useState } from 'react'
 import { GrayMatter } from '../lib/constants'
 import {
   CurrentPageContext,
+  FullPageContext,
   NavVisibleContext,
-  OggDataContext,
-  PageBgContext
+  OggDataContext
 } from '../lib/contexts'
 
 const MyApp = ({ Component, pageProps }) => {
@@ -23,22 +23,21 @@ const MyApp = ({ Component, pageProps }) => {
     [hasNav]
   );
 
-  const [pageCss, setPageCss] = useState('appContainer');
-  const pageCssValue = useMemo(
-    () => ({ pageCss, setPageCss }),
-    [pageCss]
+  const [isFullPage, setIsFullPage] = useState(false);
+  const isFullPageValue = useMemo(
+    () => ({ isFullPage, setIsFullPage }),
+    [isFullPage]
   );
 
   const [oggData, setOggData] = useState({
-    ogTitle: 'Blocksyweb: Block chain, Crypto, NFTs tools and information',
-    img: null,
+    ogTitle: 'Block chain, Crypto, NFTs tools and information',
+    ogImg: null,
     tags: [],
     amzn: null,
     tb: null,
     date: null,
     ogDesc: null,
     ogUrl: null,
-    ogImg: null,
   } as GrayMatter);
   const oggDataValue = useMemo(
     () => ({ oggData, setOggData }),
@@ -59,11 +58,11 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <CurrentPageContext.Provider value={currentPageValue}>
       <NavVisibleContext.Provider value={hasNavValue}>
-        <PageBgContext.Provider value={pageCssValue}>
+        <FullPageContext.Provider value={isFullPageValue}>
           <OggDataContext.Provider value={oggDataValue}>
             <Component {...pageProps} />
           </OggDataContext.Provider>
-        </PageBgContext.Provider>
+        </FullPageContext.Provider>
       </NavVisibleContext.Provider>
     </CurrentPageContext.Provider>
   );
