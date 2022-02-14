@@ -60,7 +60,7 @@ const InvestorFormView = ({ coinCount, setCoinCount, setFormValues }): JSX.Eleme
           {[1,2,3,4,5].map((item) => (<option key={item} value={item}>{item}</option>))}
         </select>
       </div>
-      <div className="col-span-8"><h3>Investment rules</h3></div>
+      <div className="col-span-8"><h3>Investment Matrix</h3></div>
       {coinCount.map((idx: number) => (
         <React.Fragment key={idx}>
           <div className="col-span-8 sm:col-span-2 lg:col-span-2">

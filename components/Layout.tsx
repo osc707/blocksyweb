@@ -12,7 +12,7 @@ const Layout = ({ children }): JSX.Element => {
     <>
       <HeadComponent />
       <Nav />
-      <div className={(!isFullPage) ? 'appContainer appContainer--light px-8 py-4' : 'appContainer appContainer--light'}>
+      <div className={(!isFullPage) ? 'appContainer appContainer--light px-8 py-24' : 'appContainer appContainer--light'}>
         {children}  
       </div>
       <Footer />

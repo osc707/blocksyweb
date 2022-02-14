@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { useContext, useEffect } from 'react'
 
 import Layout from '../components/Layout'
@@ -18,11 +19,11 @@ const HomePage = (): JSX.Element => {
   useEffect(() => {
     setCurrentPage('home');
     setIsFullPage(true);
+    setHasNav(false);
     setOggData({
       ogTitle: 'Block chain, Crypto, NFTs tools and information',
       ogImg: null,
     });
-    setHasNav(false);
   }, []);
 
   return (
@@ -50,12 +51,14 @@ const HomePage = (): JSX.Element => {
                     We're busy building our library of easy to-read articles, in-depth analysis and tools to help the beginner, NFT creators, collectors and the defi community at large.
                   </p>
                   <div>
-                    <button
-                      type="button" 
-                      className='px-7 py-3 bg-gray-200 text-gray-900 font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-300 ease-in-out mt-6 mr-2'
-                      data-test-id="btnComingSoon">
-                      Coming soon!
-                    </button>
+                    <Link href='/investor'>
+                      <button
+                        type="button" 
+                        className='px-7 py-3 bg-gray-200 text-gray-900 font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-300 ease-in-out mt-6 mr-2'
+                        data-test-id="btnComingSoon">
+                        DCA Tool
+                      </button>
+                    </Link>
                     {/* <button type="button" className='inline-block px-7 py-3 bg-transparent text-white font-medium text-sm leading-snug uppercase rounded hover:bg-gray-100 hover:text-blue-700 focus:text-blue-700 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 active:text-blue-800 transition duration-300 ease-in-out mt-6'>
                       See Demo
                     </button>

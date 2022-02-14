@@ -3,13 +3,20 @@ import { useContext, useEffect, useState } from 'react'
 
 import { Chart, Table } from '../components/Defi'
 import Layout from '../components/Layout'
-import { CurrentPageContext, OggDataContext } from '../lib/contexts'
+import {
+  CurrentPageContext,
+  FullPageContext,
+  NavVisibleContext,
+  OggDataContext
+} from '../lib/contexts'
 import { dateFormat, isDataStale, setView } from '../services/defi.service'
 
 
 const Defi = (): JSX.Element => {
   const { currentPage, setCurrentPage } = useContext(CurrentPageContext);
   const { oggData, setOggData } = useContext(OggDataContext);
+  const { hasNav, setHasNav } = useContext(NavVisibleContext);
+  const { isFullPage, setIsFullPage } = useContext(FullPageContext);
 
   const [byValue, setByValue] = useState(true);
   const [data, setData] = useState(null);
@@ -33,8 +40,7 @@ const Defi = (): JSX.Element => {
     }
     // load from nodejs
     fetch(
-      'https://api.oscarscampos.com/defi/data'
-      // 'http://localhost:3000/defi/data'
+      `${process.env.NEXT_PUBLIC_HOSTNAME}/defi/data`
     ).then(response => response.json()).then((resData) => {
       localStorage.setItem('defiData', JSON.stringify(resData));
       localStorage.setItem('defiDate', `${format(new Date(), dateFormat)}`);
@@ -44,6 +50,8 @@ const Defi = (): JSX.Element => {
 
   useEffect(() => {
     setCurrentPage('blog');
+    setIsFullPage(false);
+    setHasNav(true);
     setOggData({
       ogTitle: 'Our defi investments',
       ogImg: null,

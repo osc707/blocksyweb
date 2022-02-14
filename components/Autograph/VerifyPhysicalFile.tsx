@@ -17,7 +17,7 @@ const VerifyPhysicalFile = (): JSX.Element => {
     formData.append('wallet', wallet);
     formData.append('art', file, file.name);
 
-    const res = await axios.post('http://localhost:3000/autograph/verify', formData,
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_HOSTNAME}/autograph/verify`, formData,
       {
         headers: {
           'Content-Type': 'multipart/form-data'

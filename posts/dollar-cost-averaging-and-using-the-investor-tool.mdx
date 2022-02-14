@@ -6,9 +6,15 @@ date: '2022-02-03'
 ogTitle: 'Dollar cost averaging Investor tool'
 ogDesc: 'Helping you cost dollar average, split your investment and hopefully save'
 ogUrl: '/posts/dollar-cost-averaging-and-using-the-investor-tool'
-ogImg: 
+ogImg: '/images/posts/dollar-cost-averaging-and-using-the-investor-tool.png'
 author: 'osc'
 ---
+
+## What is the DCA Investor tool?
+
+It's a tool that will help you take a lump some investment, divide it among the coins you enter, based on percentage. Then it will look up that 
+coin's price, if that coin's price is above your state max price, it will then suggest your buy the alternate coin. We leverage Coingecko's API 
+for the current price.
 
 **Why did we build our [DCA Investor tool](/investor)?** 
 
@@ -45,8 +51,8 @@ Investment amount: $200 USD
 
 Now it's the 6th of the month and it's time to invest. We have $200 USD to invest, so let's run through our rules engine.
 We start with our first coin in the list, and look up its price using [Coingecko](https://www.coingecko.com/). 
-If the value is below our __max price__ then we will buying it this month. Let's say that both $ADA and $SOL are above our max price.
-Our rules engine would then suggest buy the __alternate__ listed instead. And our table would look like this:
+If the value is below our **max price** then we will buying it this month. Let's say that both $ADA and $SOL are above our max price.
+Our rules engine would then suggest buy the **alternate** listed instead. And our table would look like this:
 
 |Coin | Amount |
 |:----|-------:|
@@ -61,3 +67,25 @@ when that happens.
 
 ## Using the DCA Investor tool
 
+All the fields are required. The tool does not provide investment advice, it's made for education and entertainment purposes. As with anything 
+you read on this site, DYOR! 
+
+1. Enter the **investment amount**
+2. Select the **currency**
+3. Select the **number of investments** you are going to split your investment amount into. Example: BTC & ETH, select 2
+4. Fill out the **Investment Matrix**
+   1. Enter the **coin ticker** the ticker assigned for the coin. BTC for Bitcoin, ETH for Ethereum, etc.
+   2. Enter the **percentage of purchase**, this is the percentage of the total investment that you would like to allocate to this asset. Only numbers, no % sign
+   3. Enter the **max price** you would purchase this asset for. Example, 65000. Only numbers no currency symbols
+   4. Enter an **alternate purchase** ticker symbol. In case your primary choice is above your *max price*, it will suggest that instead of the initial ticker entered.
+5. Click **Validate** this ensures the form is valid
+6. Click **Generate**
+
+Fetching the results will return two things:
+
+1. A re-usable matrix of the data you filled out in the form. Save this for next time and use the **code view**
+2. Your results
+
+The investment matrix is generated using the Coingecko api to get prices.
+
+I hope you find this helpful. If you have any questions or comments, please visit our [discord](https://discord.com/channels/942668760765050900/942669903306035270)

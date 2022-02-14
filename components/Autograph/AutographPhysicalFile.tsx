@@ -17,7 +17,7 @@ const AutographPhysicalFile = (): JSX.Element => {
     formData.append('wallet', wallet);
     formData.append('art', file, file.name);
 
-    const res = await axios.post('http://localhost:3000/autograph/add', formData,
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_HOSTNAME}/autograph/add`, formData,
       {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -28,7 +28,7 @@ const AutographPhysicalFile = (): JSX.Element => {
     const { data } = res;
 
     if (data.status === 'SUCCESS') {
-      window.open(`http://localhost:3000/autograph/download?f=${data.data}`);
+      window.open(`${process.env.NEXT_PUBLIC_HOSTNAME}/autograph/download?f=${data.data}`);
     }
   };
 

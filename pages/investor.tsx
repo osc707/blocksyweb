@@ -4,12 +4,19 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import { InvestorCodeView, InvestorFormView } from '../components/Investor'
 import Layout from '../components/Layout'
-import { CurrentPageContext, OggDataContext } from '../lib/contexts'
+import {
+  CurrentPageContext,
+  FullPageContext,
+  NavVisibleContext,
+  OggDataContext
+} from '../lib/contexts'
 import { currencyList } from '../lib/utils'
 
 const Investor = (): JSX.Element => {
   const { currentPage, setCurrentPage } = useContext(CurrentPageContext);
   const { oggData, setOggData } = useContext(OggDataContext);
+  const { hasNav, setHasNav } = useContext(NavVisibleContext);
+  const { isFullPage, setIsFullPage } = useContext(FullPageContext);
   const [coinCount, setCoinCount] = useState([1]);
   const [response, setResponse] = useState(null);
   const [formView, setFormView] = useState(true);
@@ -17,6 +24,7 @@ const Investor = (): JSX.Element => {
   const [formValues, setFormValues] = useState(null);
   const [investment, setInvestment] = useState(0);
   const [selectedCurrency, setSelectedCurrency] = useState('USD');
+  const [hideInstructions, setHideInstructions] = useState(true);
 
   const submitForm = async (e: any): Promise<any> => {
     e.preventDefault();
@@ -35,7 +43,7 @@ const Investor = (): JSX.Element => {
       setFormView(false);
     }
     const res = await axios.post(
-      'http://localhost:3000/investor/calculate',
+      `${process.env.NEXT_PUBLIC_HOSTNAME}/investor/calculate`,
       formData, {
         headers: {
           'Content-Type': 'application/json'
@@ -65,12 +73,12 @@ const Investor = (): JSX.Element => {
 
   const handleCurrencyChange = (e:any): void => {
     setSelectedCurrency(e.target.value);
-  }
-  
-  const color = 'grey';
+  };
 
   useEffect(() => {
     setCurrentPage('investor');
+    setIsFullPage(false);
+    setHasNav(true);
     setOggData({
       ogTitle: 'Dollar-cost averaging Investor tool',
       ogImg: null,
@@ -88,38 +96,53 @@ const Investor = (): JSX.Element => {
                   <div className="grid grid-cols-8 gap-6">
                     <div className="col-span-8"><h2>Investor</h2></div>
                     <div className="col-span-8">
-                      How does this tool work? Read our <Link href={'/posts/dollar-cost-averaging-and-using-the-investor-tool'}><a>dollar-cost averaging (DCA)</a></Link> post.
+                      How does this tool work?&nbsp;
+                      {hideInstructions && (
+                        <Link href={'#'}><a onClick={() => setHideInstructions(false)}>show instructions</a></Link>
+                      )}
+                      {!hideInstructions && (
+                        <Link href={'#'}><a onClick={() => setHideInstructions(true)}>hide instructions</a></Link>
+                      )}
+                      {!hideInstructions && (
+                        <>
+                          <ol>
+                            <li>Enter the <strong>investment amount</strong></li>
+                            <li>Select the <strong>currency</strong></li>
+                            <li>Select the <strong>number of investments</strong> you are going to split your investment amount into. Example: BTC &amp; ETH, select 2</li>
+                            <li>Fill out the <strong>Investment Matrix</strong></li>
+                              <ol>
+                                <li>Enter the <strong>coin ticker</strong> the ticker assigned for the coin. BTC for Bitcoin, ETH for Ethereum, etc.</li>
+                                <li>Enter the <strong>percentage of purchase</strong>, this is the percentage of the total investment that you would like to allocate to this asset. Only numbers, no % sign</li>
+                                <li>Enter the <strong>max price</strong> you would purchase this asset for. Example, 65000. Only numbers no currency symbols</li>
+                                <li>Enter an <strong>alternate purchase</strong> ticker symbol. In case your primary choice is above your *max price*, it will suggest that instead of the initial ticker entered.</li>
+                              </ol>
+                            <li>Click <strong>Validate</strong> this ensures the form is valid</li>
+                            <li>Click <strong>Generate</strong></li>
+                          </ol>
+                          Read more <Link href={'/posts/dollar-cost-averaging-and-using-the-investor-tool'}><a>dollar-cost averaging (DCA)</a></Link> post.
+                          I hope you find this helpful. If you have any questions or comments, please visit our <Link href={'https://discord.com/channels/942668760765050900/942669903306035270'}><a>discord</a></Link>
+                        </>
+                      )}
                     </div>
                     <div className="col-span-8">
-                      <ul className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row" role="tablist">
-                        <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
-                          <a className={
-                              "text-xs font-bold uppercase px-5 py-3 rounded block leading-normal " +
-                              ((formView) ? `text-white bg-${color}-600` : `text-black bg-white`)
-                            }
+                      <div className="flex items-center justify-center">
+                        <div className="inline-flex" role="group">
+                          <button 
                             onClick={(e) => { e.preventDefault(); handleTabChange(true); }}
-                            data-toggle="tab"
-                            href="#link1"
-                            role="tablist"
-                          >
-                            Form
-                          </a>
-                        </li>
-                        <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
-                          <a
-                            className={
-                              "text-xs font-bold uppercase px-5 py-3 rounded block leading-normal " +
-                              ((!formView) ? `text-white bg-${color}-600` : `text-black bg-white`)
-                            }
+                            type="button" 
+                            className="bg-indigo-600 disabled:bg-gray-300 rounded-l inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase hover:bg-indigo-700 focus:bg-indigo-700 focus:outline-none focus:ring-0 active:bg-indigo-800 transition duration-150 ease-in-out"
+                            disabled={formView}>
+                              Form
+                          </button>
+                          <button
                             onClick={(e) => { e.preventDefault(); handleTabChange(false); }}
-                            data-toggle="tab"
-                            href="#link2"
-                            role="tablist"
-                          >
-                            Code view
-                          </a>
-                        </li>
-                      </ul>
+                            type="button" 
+                            className="bg-indigo-600 disabled:bg-gray-300 rounded-r inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase hover:bg-indigo-700 focus:bg-indigo-700 focus:outline-none focus:ring-0 active:bg-indigo-800 transition duration-150 ease-in-out"
+                            disabled={!formView}>
+                              Code view
+                          </button>
+                        </div>
+                      </div>
                     </div>
                     <div className="col-span-4">
                       <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Investment amount</label>
@@ -169,7 +192,7 @@ const Investor = (): JSX.Element => {
                     onClick={submitForm}
                     type="submit" 
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Fetch
+                    Generate
                   </button>
                 </div>
               </div>

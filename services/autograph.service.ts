@@ -4,8 +4,8 @@ enum KEYS {
 
 const PRICE = 10;
 
-const serverURL = `http://localhost:3000/`;
-const walletURL = `${serverURL}wallet/`;
+const serverURL = `${process.env.NEXT_PUBLIC_HOSTNAME}`;
+const walletURL = `${serverURL}/wallet/`;
 
 export const chainSelected = (chainId: string): string => {
   return chainId;

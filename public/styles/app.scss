@@ -130,7 +130,7 @@ a:visited, a:active {
 // Post
 .post {
 
-  @apply text-base;
+  @apply text-base w-3/4 mx-auto;
 
   h2, h3 {
     @apply mt-8;
@@ -143,6 +143,14 @@ a:visited, a:active {
   .authorImage {
     // https://bennettfeely.com/clippy/
     clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
+  }
+
+  .tags {
+    @apply mt-8 text-xs;
+
+    strong {
+      @apply mr-2;
+    }
   }
 
 }
