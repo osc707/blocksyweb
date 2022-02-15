@@ -1,5 +1,7 @@
+import * as coins from './coingecko.json'
+
 export const currencyList = [
-  { code: 'USD', desc: 'United Stats Dollar' },
+  { code: 'USD', desc: 'United States Dollar' },
   { code: 'AED', desc: 'United Arab Emirates Dirham' },
   { code: 'ARS', desc: 'Argentine Peso' },
   { code: 'AUD', desc: 'Australian Dollar' },
@@ -43,3 +45,11 @@ export const currencyList = [
 export const getCurrencyByCode = (code: string) : any => {
   return currencyList.filter((currency) => currency.code === code)[0];
 };
+
+type Coin = {
+  id: string,
+  symbol: string,
+  name: string,
+};
+
+export const supportedCoins = (): Coin[] => coins.map((coin: Coin) => ({ id: coin.id, symbol: coin.symbol.toUpperCase(), name: coin.name }));

@@ -398,6 +398,30 @@ nav {
   margin: 0 auto;
 }
 
+input[type=range]{
+  -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track  {
+    height: 5px;
+    border-radius: 3px;
+    @apply mt-1 block bg-indigo-100;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  @apply mt-1 block bg-indigo-400;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  @apply bg-indigo-600;
+  margin-top: -5px;
+}
+
 // Legal disclaimer
 .investmentDisclaimer {
   @apply text-center text-sm bg-gray-100 p-4 mt-2;

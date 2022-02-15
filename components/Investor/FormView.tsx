@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import { supportedCoins } from '../../lib/utils'
+
 const InvestorFormView = ({ coinCount, setCoinCount, setFormValues }): JSX.Element => {
   const fieldNames = ['ticker', 'percent', 'maxPrice', 'alt'];
   const [validForm, setValidForm] = useState(false);
@@ -27,12 +29,18 @@ const InvestorFormView = ({ coinCount, setCoinCount, setFormValues }): JSX.Eleme
   };
 
   const validate = (e: any): void => {
-    var elm = (e.target as HTMLInputElement);
+    const elm = (e.target as HTMLInputElement);
     elm.classList.remove('invalid:border-red-500');
     if (!elm.value || elm.value.trim().length < 1) {
       elm.classList.add('invalid:border-red-500');
       setValidForm(false);
     }
+  };
+
+  const displayRangeValue = (e: any): void => {
+    const val = e.target.value;
+    const id = `${e.target.id}-value`;
+    document.getElementById(id).innerHTML = `${val}%`;
   };
 
   useEffect(() => {
@@ -65,31 +73,36 @@ const InvestorFormView = ({ coinCount, setCoinCount, setFormValues }): JSX.Eleme
         <React.Fragment key={idx}>
           <div className="col-span-8 sm:col-span-2 lg:col-span-2">
             <label htmlFor={`ticker-${idx}`} className="block text-sm font-medium text-gray-700">Coin ticker</label>
-            <input required={true} 
+            <input
+              required={true} 
               onBlur={validate}
-              type="text" 
+              list="coins" 
               name={`ticker-${idx}`} 
               id={`ticker-${idx}`} 
               placeholder="BTC" 
-              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
-
           <div className="col-span-8 sm:col-span-2 lg:col-span-2">
             <label htmlFor={`percent-${idx}`} className="block text-sm font-medium text-gray-700">Percentage of purchase</label>
             <input 
               onBlur={validate}
               required={true} 
-              type="number" 
+              type="range" 
+              defaultValue={0}
               min={0}
               max={100}
               name={`percent-${idx}`} 
               id={`percent-${idx}`} 
               placeholder="10" 
-              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              className="w-full"
+              onChange={displayRangeValue}
             />
+            <div
+              className='text-xs text-center'
+              id={`percent-${idx}-value`}>
+            </div>
           </div>
-
           <div className="col-span-8 sm:col-span-2 lg:col-span-2">
             <label htmlFor={`maxPrice-${idx}`} className="block text-sm font-medium text-gray-700">Max price</label>
             <input 
@@ -109,15 +122,20 @@ const InvestorFormView = ({ coinCount, setCoinCount, setFormValues }): JSX.Eleme
             <input 
               onBlur={validate}
               required={true} 
-              type="text" 
+              list="coins" 
               name={`alt-${idx}`} 
               id={`alt-${idx}`} 
               placeholder="GUSD" 
-              className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
         </React.Fragment>
       ))}
+      <datalist id="coins">
+        {supportedCoins().map((coin: any) => (
+          <option key={coin.id} value={coin.symbol}>{coin.symbol} {coin.name}</option>
+        ))}
+      </datalist>
       <div className="col-span-8 sm:col-span-2 lg:col-span-2">
         <button
           onClick={validateForm}
