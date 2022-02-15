@@ -46,11 +46,11 @@ const InvestorCodeView = ({ matrix, setMatrix, response }): JSX.Element => {
           defaultValue={matrix}
           required={true}
           placeholder='[
-            { "ticker": "BTC", "percent": 30, "maxPrice": 65000, "alt": "GUSC" },
-            { "ticker": "ETH", "percent": 20, "maxPrice": 4900, "alt": "GUSC" },
-            { "ticker": "ADA", "percent": 20, "maxPrice": 3.00, "alt": "GUSC" },
-            { "ticker": "MATIC", "percent": 20, "maxPrice": 3.75, "alt": "GUSC" },
-            { "ticker": "ONE", "percent": 10, "maxPrice": 0.50, "alt": "GUSC" }
+            { "ticker": "BTC", "percent": 30, "maxPrice": 65000, "alt": "GUSD" },
+            { "ticker": "ETH", "percent": 20, "maxPrice": 4900, "alt": "GUSD" },
+            { "ticker": "ADA", "percent": 20, "maxPrice": 3.00, "alt": "GUSD" },
+            { "ticker": "MATIC", "percent": 20, "maxPrice": 3.75, "alt": "GUSD" },
+            { "ticker": "ONE", "percent": 10, "maxPrice": 0.50, "alt": "GUSD" }
           ]'></textarea>
       </div>
       {response && (

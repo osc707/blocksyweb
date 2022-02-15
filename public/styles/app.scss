@@ -400,13 +400,19 @@ nav {
 
 // Legal disclaimer
 .investmentDisclaimer {
-  @apply text-center text-sm bg-gray-100 p-4 my-2;
+  @apply text-center text-sm bg-gray-100 p-4 mt-2;
 }
 
 // Footer
 footer {
-  @apply text-center;
-  font-size: 11px;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  @apply text-xs;
+
+  .icon {
+    @apply inline-block;
+
+    svg {
+      @apply fill-gray-300 hover:fill-indigo-600;
+    }
+  }
+
 }
