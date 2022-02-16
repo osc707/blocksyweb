@@ -156,82 +156,6 @@ a:visited, a:active {
 }
 
 // Nav
-.navContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-}
-
-.navContainer--close {
-  height: initial;
-}
-
-.navContainer--open {
-  height: 100vh;
-}
-
-.navToggle {
-  background-color: $highlight;
-  border-radius: 2px;
-  height: 24px;
-  width: 24px;
-  text-align: center;
-  margin: 14px 12px 0px 8px;
-  box-sizing: border-box;
-  cursor: pointer;
-  transform: rotate(0deg);
-  transition: transform 200ms ease, background 800ms ease;
-  @apply shadow-lg;
-}
-
-.navToggle--closed {
-  background-color:  $highlight2;
-  transform: rotate(360deg);
-  transition: transform 200ms ease, background 800ms ease;
-}
-
-.navLogo {
-  @apply pt-2;
-}
-
-.navLogo--Container {
-  background-color: $dark-bg;
-  color: $dark-bg-text;
-}
-
-.nav--backdrop {
-  position: absolute;
-  @apply backdrop-blur;
-  width: 100%;
-  height: 100%;
-  display: inherit;
-}
-
-.nav--backdrop--hide {
-  display: none;
-}
-
-.nav {
-  height: calc(100vh - 32px);
-  background-color: $light-bg;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  border-bottom: 2px solid $highlight;
-  width: 100%;
-  text-align: center;
-}
-
-.nav--open {
-  height: calc(100vh - 52px);
-  transition: height 200ms ease;
-}
-
-.nav--hide {
-  height: 0px;
-  transition: height 200ms ease;
-}
-
 nav {
   // Photo by Alesia Kozik from Pexels
   background-image: url('/images/home-header.jpg');
@@ -344,12 +268,6 @@ nav {
     margin: 0 auto 0 auto;
   }
 }
-.-skew-x-12 {
-  transform: skewX(-12deg);
-}
-.skew-x-12 {
-  transform: skewX(12deg);
-}
 
 // Autograph
 .flip {
@@ -396,6 +314,10 @@ nav {
   width: 80vh;
   height: 80vh;
   margin: 0 auto;
+}
+
+.loading {
+  @apply text-center;
 }
 
 input[type=range]{
