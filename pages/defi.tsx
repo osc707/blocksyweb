@@ -68,7 +68,6 @@ const Defi = (): JSX.Element => {
     <Layout>
       <h2>My defi investments</h2>
       <p>This page is not investment advice. If you are seeing this it's because you found it. Always do your own research (DYOR).</p>
-      {/* <Split/> */}
       {!data && (
         <div className='loading'>
           <img src='/images/Spinner.gif' />

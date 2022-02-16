@@ -1,11 +1,12 @@
 import React from 'react'
 
+import { filterCoinsForView } from '../../services/defi.service'
 import Gains from './Gains'
 
 const Table = ({ data, byValue, showGains }): JSX.Element => {
   const formattedGains = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(data.gains);
   const gains = `Gains: ${formattedGains}, updated ${data.date}`;
-  const values = (byValue) ? data.byValue : data.byVolume;
+  const values = (byValue) ? filterCoinsForView(data.byValue) : filterCoinsForView(data.byVolume);
   const label = (byValue) ? 'Percent by $ value' : 'Percent by # of coins';
 
   return (

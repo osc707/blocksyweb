@@ -12,3 +12,5 @@ export const isDataStale = (startDate: string): boolean => {
 export const setView = (fn: Function): void => {
   (window.matchMedia('(min-width: 1000px)').matches) ? fn(true) : fn(false);
 };
+
+export const filterCoinsForView = (coins: any[]): any[] => (coins || []).filter((coin: any) => coin.percentage > 0 && coin.show === true);
