@@ -11,10 +11,10 @@ import {
 } from '../lib/contexts'
 
 const HomePage = (): JSX.Element => {
-  const { currentPage, setCurrentPage } = useContext(CurrentPageContext);
-  const { oggData, setOggData } = useContext(OggDataContext);
-  const { hasNav, setHasNav } = useContext(NavVisibleContext);
-  const { isFullPage, setIsFullPage } = useContext(FullPageContext);
+  const { setCurrentPage } = useContext(CurrentPageContext);
+  const { setOggData } = useContext(OggDataContext);
+  const { setHasNav } = useContext(NavVisibleContext);
+  const { setIsFullPage } = useContext(FullPageContext);
 
   useEffect(() => {
     setCurrentPage('home');

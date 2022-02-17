@@ -20,3 +20,8 @@ export const OggDataContext = createContext({
   oggData: null,
   setOggData: null,
 });
+
+export const ToastContext = createContext({
+  toastData: null,
+  setToastData: null,
+});

@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import Nav from '../components/Nav'
 import { FullPageContext } from '../lib/contexts'
 import HeadComponent from './HeadComponent'
+import Toast from './utils/Toast'
 
 const Layout = ({ children }): JSX.Element => {
   const { isFullPage, setIsFullPage } = useContext(FullPageContext);
@@ -16,6 +17,7 @@ const Layout = ({ children }): JSX.Element => {
         {children}  
       </div>
       <Footer />
+      <Toast/>
     </>
   )
 };

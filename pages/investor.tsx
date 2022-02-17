@@ -13,10 +13,10 @@ import {
 import { currencyList } from '../lib/utils'
 
 const Investor = (): JSX.Element => {
-  const { currentPage, setCurrentPage } = useContext(CurrentPageContext);
-  const { oggData, setOggData } = useContext(OggDataContext);
-  const { hasNav, setHasNav } = useContext(NavVisibleContext);
-  const { isFullPage, setIsFullPage } = useContext(FullPageContext);
+  const { setCurrentPage } = useContext(CurrentPageContext);
+  const { setOggData } = useContext(OggDataContext);
+  const { setHasNav } = useContext(NavVisibleContext);
+  const { setIsFullPage } = useContext(FullPageContext);
   const [coinCount, setCoinCount] = useState([1]);
   const [response, setResponse] = useState(null);
   const [formView, setFormView] = useState(true);

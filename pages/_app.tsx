@@ -7,7 +7,8 @@ import {
   CurrentPageContext,
   FullPageContext,
   NavVisibleContext,
-  OggDataContext
+  OggDataContext,
+  ToastContext
 } from '../lib/contexts'
 
 const MyApp = ({ Component, pageProps }) => {
@@ -44,6 +45,17 @@ const MyApp = ({ Component, pageProps }) => {
     [oggData.ogTitle, oggData.ogUrl]
   );
 
+  const [toastData, setToastData] = useState({
+    show: false,
+    type: '',
+    title: '',
+    msg: ''
+  });
+  const toastDataValue = useMemo(
+    () => ({ toastData, setToastData }),
+    [toastData.show, toastData.type, toastData.title, toastData.msg]
+  );
+
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -60,7 +72,9 @@ const MyApp = ({ Component, pageProps }) => {
       <NavVisibleContext.Provider value={hasNavValue}>
         <FullPageContext.Provider value={isFullPageValue}>
           <OggDataContext.Provider value={oggDataValue}>
-            <Component {...pageProps} />
+            <ToastContext.Provider value={toastDataValue}>
+              <Component {...pageProps} />
+            </ToastContext.Provider>
           </OggDataContext.Provider>
         </FullPageContext.Provider>
       </NavVisibleContext.Provider>
