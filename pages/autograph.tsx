@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useContext, useEffect, useState } from 'react'
 
 import {
@@ -82,7 +83,7 @@ const Autograph = (): JSX.Element => {
                 <div className='grid md:grid-cols-3 gap-4 flex justify-center'>
                   <div className='mb-6 lg:mb-0'>
                     <div className='block rounded-lg shadow-lg text-white relative overflow-hidden bg-no-repeat bg-cover' style={{ backgroundPosition: '50%' }}>
-                      <img src="https://mdbootstrap.com/img/Photos/new-templates/img9.jpg" className='' />
+                      <Image src="https://mdbootstrap.com/img/Photos/new-templates/img9.jpg" alt='' />
                       <div className='absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed' style={{ background: gradient }}>
                         <div className='flex justify-center items-center h-full'>
                           <div className='opacity-100 p-6 lg:p-12 text-center'>
@@ -99,7 +100,7 @@ const Autograph = (): JSX.Element => {
                   </div>
                   <div className='mb-6 lg:mb-0'>
                     <div className='block rounded-lg shadow-lg text-white relative overflow-hidden bg-no-repeat bg-cover' style={{ backgroundPosition: '50%' }}>
-                      <img src="https://mdbootstrap.com/img/Photos/new-templates/img10.jpg" className='' />
+                      <Image src="https://mdbootstrap.com/img/Photos/new-templates/img10.jpg" alt=''/>
                       <div className='absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed' style={{ background: gradient }}>
                         <div className='flex justify-center items-center h-full'>
                           <div className='opacity-100 p-6 lg:p-12 text-center'>
@@ -114,7 +115,7 @@ const Autograph = (): JSX.Element => {
                   </div>
                   <div className='mb-0'>
                     <div className='block rounded-lg shadow-lg text-white relative overflow-hidden bg-no-repeat bg-cover' style={{ backgroundPosition: '50%' }}>
-                      <img src="https://mdbootstrap.com/img/Photos/new-templates/img11.jpg" className='' />
+                      <Image src="https://mdbootstrap.com/img/Photos/new-templates/img11.jpg" alt=''/>
                       <div className='absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed' style={{ background: gradient }}>
                         <div className='flex justify-center items-center h-full'>
                           <div className='opacity-100 p-6 lg:p-12 text-center'>

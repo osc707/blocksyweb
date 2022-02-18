@@ -37,19 +37,21 @@ const VerifyIPFSFile = (): JSX.Element => {
       const { data } = res;
       console.log(data);
       setLoading(false);
-      setToastData({
-        show: true,
-        type: data.status,
-        title: 'IPFS Results',
-        msg: (
-          <>
-            <div className='font-bold'>File</div>
-            <div><a href={data.ipfs}>{data.ipfs}</a></div>
-            <div className='font-bold mt-2'>Autographed by</div>
-            <div>{data.autograph}</div>
-          </>
-        )
-      });
+      if (data.status === 'SUCCESS') {
+        setToastData({
+          show: true,
+          type: data.status,
+          title: 'IPFS Results',
+          msg: (
+            <>
+              <div className='font-bold'>File</div>
+              <div><a href={data.ipfs}>{data.ipfs}</a></div>
+              <div className='font-bold mt-2'>Autographed by</div>
+              <div>{data.autograph}</div>
+            </>
+          )
+        });
+      }
     }
   };
 

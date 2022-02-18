@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Image from 'next/image'
 import { useState } from 'react'
 
 const AutographPhysicalFile = ({ wallet }): JSX.Element => {
@@ -106,7 +107,13 @@ const AutographPhysicalFile = ({ wallet }): JSX.Element => {
         </div>
         {file && (
           <div className='mt-4 mb-2'>
-            <img src={URL.createObjectURL(file)}/>
+            <Image
+              src={URL.createObjectURL(file)}
+              alt='Image preview'
+              layout='responsive'
+              width={300}
+              height={200}
+            />
           </div>
         )}
         <input

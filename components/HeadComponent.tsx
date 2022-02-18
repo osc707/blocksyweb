@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Script from 'next/script'
 import { useContext } from 'react'
 
 import { OggDataContext } from '../lib/contexts'
@@ -21,8 +22,8 @@ const HeadComponent = (): JSX.Element => {
           <meta property="og:image" content={oggData.ogImg} />
         )}
         <link rel="icon" href="/icons/favicon.ico" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XEKMHVK2QB"/>
-        <script
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-XEKMHVK2QB"/>
+        <Script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];

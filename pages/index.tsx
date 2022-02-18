@@ -48,7 +48,8 @@ const HomePage = (): JSX.Element => {
                     <span>about crypto &amp; defi</span>
                   </h2>
                   <p className='text-xl mb-6 text-white opacity-90'>
-                    We're busy building our library of easy to-read articles, in-depth analysis and tools to help the beginner, NFT creators, collectors and the defi community at large.
+                    We&rsquo;re busy building our library of easy to-read articles, in-depth analysis and tools to help the beginner, 
+                    NFT creators, collectors and the defi community at large.
                   </p>
                   <div>
                     <Link href='/investor'>

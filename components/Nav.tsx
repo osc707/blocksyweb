@@ -67,14 +67,16 @@ const Nav = (): JSX.Element => {
           <div className='collapse navbar-collapse flex-grow items-center' id="navbarSupportedContent">
             <ul className='navbar-nav flex flex-row pl-0 list-style-none mr-auto mb-0'>
               <li className='nav-item px-2'>
-                <a className='text-xl text-black logo' aria-current="page" href="/">
-                  <Image
-                    src={'/images/logo-stacked-white.png'}
-                    alt={'Blocksyweb logo'}
-                    width={54.8}
-                    height={47.5}
-                  />
-                </a>
+                <Link aria-current="page" href="/">
+                  <a className='text-xl text-black logo' >
+                    <Image
+                      src={'/images/logo-stacked-white.png'}
+                      alt={'Blocksyweb logo'}
+                      width={54.8}
+                      height={47.5}
+                    />
+                  </a>
+                </Link>
               </li>
               {(navItems || []).filter((page: Page) => page.enabled).map((page: Page) => {
                 const cssClass = (currentPage === page.key) ? 'navItem navItem--active' : 'navItem';

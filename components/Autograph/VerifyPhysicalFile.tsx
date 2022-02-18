@@ -1,12 +1,16 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import { useContext, useEffect, useState } from 'react'
+
+import { ToastContext } from '../../lib/contexts'
 
 const VerifyPhysicalFile = (): JSX.Element => {
-  const [file, setFile] = useState(null);
+  const { setToastData } = useContext(ToastContext);
+  const [fileToVerify, setFileToVerify] = useState(null);
   const [disabled, setDisabled] = useState(true);
 
   const onFileChange = (event: any) => {
-    setFile(event.target.files[0]);
+    setFileToVerify(event.target.files[0]);
   };
 
   const dropHandler = (e: any): void => {
@@ -18,13 +22,13 @@ const VerifyPhysicalFile = (): JSX.Element => {
         // If dropped items aren't files, reject them
         if (e.dataTransfer.items[i].kind === 'file') {
           const file = e.dataTransfer.items[i].getAsFile();
-          setFile(file);
+          setFileToVerify(file);
         }
       }
     } else {
       // Use DataTransfer interface to access the file(s)
       for (let i = 0; i < e.dataTransfer.files.length; i++) {
-        setFile(e.dataTransfer.files[i]);
+        setFileToVerify(e.dataTransfer.files[i]);
       }
     }
   };
@@ -37,7 +41,7 @@ const VerifyPhysicalFile = (): JSX.Element => {
   const submitForm = async (e: any): Promise<any> => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('art', file, file.name);
+    formData.append('art', fileToVerify, fileToVerify.name);
 
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_HOSTNAME}/autograph/verify`, 
@@ -50,15 +54,28 @@ const VerifyPhysicalFile = (): JSX.Element => {
     // decide how to present the data
     const { data } = res;
     console.log(data);
+    if (data.status === 'SUCCESS') {
+      setToastData({
+        show: true,
+        type: data.status,
+        title: 'Verification results',
+        msg: (
+          <>
+            <div className='font-bold mt-2'>Autographed by</div>
+            <div>{data.autograph}</div>
+          </>
+        )
+      });
+    }
   }
 
   useEffect(() => {
-    if (!file) {
+    if (!fileToVerify) {
       setDisabled(true);
     } else {
       setDisabled(false);
     }
-  }, [file]);
+  }, [fileToVerify]);
 
   return (
     <div className='w-1/3 px-4'>
@@ -72,13 +89,13 @@ const VerifyPhysicalFile = (): JSX.Element => {
               </svg>
               <div className="flex text-sm text-gray-600">
                 <label
-                  htmlFor="art" 
+                  htmlFor="artToVerify" 
                   className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                   <span>Upload a file</span>
                   <input
                     type="file" 
-                    name="art" 
-                    id="art" 
+                    name="artToVerify" 
+                    id="artToVerify" 
                     accept="image/png, image/jpeg"
                     onChange={onFileChange}
                     className="sr-only"
@@ -92,9 +109,15 @@ const VerifyPhysicalFile = (): JSX.Element => {
             </div>
           </div>
         </div>
-        {file && (
-          <div className='mt-4 mb-2'>
-            <img src={URL.createObjectURL(file)}/>
+        {fileToVerify && (
+          <div className='mt-4 mb-2 w-1/1'>
+            <Image
+              src={URL.createObjectURL(fileToVerify)}
+              alt='File preview'
+              layout='responsive'
+              width={300}
+              height={200}
+            />
           </div>
         )}
         <input

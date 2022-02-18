@@ -1,4 +1,5 @@
 import { format } from 'date-fns'
+import Image from 'next/image'
 import { useContext, useEffect, useState } from 'react'
 
 import { Chart, Table } from '../components/Defi'
@@ -67,10 +68,18 @@ const Defi = (): JSX.Element => {
   return (
     <Layout>
       <h2>My defi investments</h2>
-      <p>This page is not investment advice. If you are seeing this it's because you found it. Always do your own research (DYOR).</p>
+      <p>
+        This page is not investment advice. If you are seeing this it&rsquo;s because you found it. 
+        Always do your own research (DYOR).
+      </p>
       {!data && (
         <div className='loading'>
-          <img src='/images/Spinner.gif' />
+          <Image
+            src='/images/Spinner.gif'
+            alt='loading indicator'
+            width={100}
+            height={100}
+          />
         </div>
       )}
       {data && (

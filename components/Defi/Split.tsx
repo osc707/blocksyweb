@@ -41,9 +41,7 @@ const Split = (): JSX.Element => {
     const newValues = values.filter((item: SplitItem) => item.index !== index);
     newValues.push({ index, value, percent } as SplitItem);
     setValues(newValues);
-  }
-
-  const updateValues = (values: SplitItem[]): void => setValues(values);
+  };
 
   useEffect(() => {
     const newValues = [];
