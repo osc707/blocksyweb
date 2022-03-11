@@ -13,7 +13,7 @@ const InvestorFormView = ({ coinCount, setCoinCount, setFormValues }): JSX.Eleme
     for (let i = 0; i < coinCount.length; i++) {
       const formElm = {};
       fieldNames.forEach((name) => {
-        const fieldIdx = i + 1;
+        const fieldIdx = coinCount[i];
         const elm = document.getElementById(`${name}-${fieldIdx}`) as HTMLInputElement;
         if (elm.value.length > 0) {
           formElm[`${name}`] = elm.value;

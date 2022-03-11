@@ -25,6 +25,7 @@ const Investor = (): JSX.Element => {
   const [investment, setInvestment] = useState(0);
   const [selectedCurrency, setSelectedCurrency] = useState('USD');
   const [hideInstructions, setHideInstructions] = useState(true);
+  const [css, setCss] = useState('col-span-8');
 
   const submitForm = async (e: any): Promise<any> => {
     e.preventDefault();
@@ -75,6 +76,19 @@ const Investor = (): JSX.Element => {
     setSelectedCurrency(e.target.value);
   };
 
+  const formatResponse = (resp: any): JSX.Element => {
+    return (
+      <tbody>
+        {resp?.purchases.map((item: any) => (
+          <tr key={item.ticker}>
+            <td className="border border-slate-300 py-2 px-4 text-left">{item.ticker}</td>
+            <td className="border border-slate-300 py-2 px-4 text-right">{item.buyAmount} {item.currency}</td>
+          </tr>
+        ))}
+      </tbody>
+    );
+  };
+
   useEffect(() => {
     setCurrentPage('investor');
     setIsFullPage(false);
@@ -84,6 +98,12 @@ const Investor = (): JSX.Element => {
       ogImg: null,
     });
   }, []);
+
+  useEffect(() => {
+    if (response) {
+      setCss('col-span-4');
+    }
+  }, [response]);
 
   return (
     <Layout>
@@ -186,6 +206,20 @@ const Investor = (): JSX.Element => {
                         setMatrix={setMatrix}
                         response={response}
                       />
+                    )}
+                    {response && (
+                      <div className={css}>
+                        <label className="mt-6 block text-sm font-medium text-gray-700">Results</label>
+                        <table className="border-collapse border border-slate-400 w-full mt-0">
+                          <thead>
+                            <tr>
+                              <th className="border border-slate-300 py-2 px-4 text-left font-bold">Coin</th>
+                              <th className="border border-slate-300 py-2 px-4 text-right font-bold">Amount</th>
+                            </tr>
+                          </thead>
+                          {formatResponse(response)}
+                        </table>
+                      </div>
                     )}
                   </div>
                 </div>
