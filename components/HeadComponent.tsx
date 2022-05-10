@@ -22,8 +22,8 @@ const HeadComponent = (): JSX.Element => {
           <meta property="og:image" content={oggData.ogImg} />
         )}
         <link rel="icon" href="/icons/favicon.ico" />
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-XEKMHVK2QB"/>
-        <Script
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XEKMHVK2QB"/>
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];

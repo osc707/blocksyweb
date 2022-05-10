@@ -32,7 +32,7 @@ const HomePage = (): JSX.Element => {
         <section className='mb-20'>
           <div className='p-0 relative overflow-hidden flex items-center bg-cover' style={{ minHeight: '75vh', backgroundImage: 'url(\'/images/home-header.jpg\')' }}>
             <span className='absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-attachment-fixed bg-gradient-info opacity-80'></span>
-            <div className='container z-10 px-6'>
+            <div className='container z-20 px-6'>
               <div className='grid grid-cols-1'>
                 <h1 className='logo' data-test-id="logo">
                   <Image
