@@ -13,6 +13,12 @@ const InvestorCodeView = ({ matrix, setMatrix, response }): JSX.Element => {
     }
   }, [response]);
 
+  useEffect(() => {
+    if (localStorage.getItem('bwinvest')) {
+      matrix = JSON.parse(localStorage.getItem('bwinvest'));
+    }
+  }, [])
+
   return (
     <>
       <div className={css}>
